@@ -1,7 +1,7 @@
 const normal = '▒';
 const crazy = '▇';
 
-export default (valuefn = ary => ary.length, threshold = 100, yellowbox = false) => events =>
+export default (valuefn = ary => ary.length, threshold = 100, yellowbox = false, label = '') => events =>
   events.do((infoAry) => {
     const len = valuefn(infoAry);
 
@@ -16,7 +16,7 @@ export default (valuefn = ary => ary.length, threshold = 100, yellowbox = false)
     }
 
     console.log(
-      'tick',
+      `tick ${label}`,
       `${(len >= threshold ? crazy : normal).repeat(Math.floor(Math.log(Math.max(len, 1))))
       }(${len})`,
     ); // eslint-disable-line no-console
