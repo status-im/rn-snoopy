@@ -1,7 +1,7 @@
 const normal = '▒';
 const crazy = '▇';
 
-export default (valuefn = ary => ary.length, threshold = 100, yellowbox = false, label = '') => events =>
+export default (valuefn = ary => ary.length, threshold = 100, tick = true, yellowbox = false, label = '') => events =>
   events.do((infoAry) => {
     const len = valuefn(infoAry);
 
@@ -15,9 +15,11 @@ export default (valuefn = ary => ary.length, threshold = 100, yellowbox = false,
       console.warn(`bars: event rate over threshold (${threshold}): ${len}`); // eslint-disable-line no-console
     }
 
-    console.log(
-      `tick ${label}`,
-      `${(len >= threshold ? crazy : normal).repeat(Math.floor(Math.log(Math.max(len, 1))))
-      }(${len})`,
-    ); // eslint-disable-line no-console
+    if (tick) {
+      console.log(
+        `tick ${label}`,
+        `${(len >= threshold ? crazy : normal).repeat(Math.floor(Math.log(Math.max(len, 1))))
+        }(${len})`,
+      ); // eslint-disable-line no-console
+    }
   });
